@@ -20,9 +20,11 @@ packer build ./debian82-vagrant.json
 
 Для автоматического обновления базовых образов необходимо создать файл метаданных.
 
-TBD.
-https://www.scriptscribe.org/infrastructure/versioned-vagrant-boxes-privately/
-
+TODO:
+ * metadata.json, https://www.scriptscribe.org/infrastructure/versioned-vagrant-boxes-privately/
+ * serverspec для тестирования образов
+ * система сборки для автоматизации (grunt, gradle, maven, buildbot?)
 
 ## Docker
 
+TBD.
