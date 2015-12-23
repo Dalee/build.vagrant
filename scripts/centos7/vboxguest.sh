@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # install guest additions
-yum -y install bzip2 wget perl gcc kernel-devel
+yum -y install gcc cpp dkms make bzip2 perl kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+
 mkdir /tmp/virtualbox
-VERSION=$(cat /home/vagrant/.vbox_version)
-mount -o loop /home/vagrant/VBoxGuestAdditions_$VERSION.iso /tmp/virtualbox
+mount -o loop /home/vagrant/VBoxGuestAdditions_$(cat /home/vagrant/.vbox_version).iso /tmp/virtualbox
 sh /tmp/virtualbox/VBoxLinuxAdditions.run
 umount /tmp/virtualbox
 rmdir /tmp/virtualbox

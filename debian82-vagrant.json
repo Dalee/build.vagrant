@@ -47,7 +47,7 @@
     }],
     
     "post-processors": [{
-        "output": "build/dalee-debian8.box",
+        "output": "build/dalee-debian.box",
         "type": "vagrant",
         "compression_level": 7
     }],

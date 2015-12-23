@@ -39,7 +39,7 @@
     }],
     
     "post-processors": [{
-        "output": "build/dalee-centos7.box",
+        "output": "build/dalee-centos.box",
         "type": "vagrant",
         "compression_level": 7
     }],
