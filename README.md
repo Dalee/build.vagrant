@@ -1,5 +1,9 @@
 # Сборка базовых образов
 
+## Готовые образы
+
+Готовые образы и минимальные метаописания доступны по адресу: http://vagrant.git.dalee.ru/
+
 ## Vagrant
 
  * VirtualBox >= 5.0.12, https://www.virtualbox.org/
