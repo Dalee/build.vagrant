@@ -1,0 +1,12 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.require_version ">= 1.6.0"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+    config.vm.box = "dalee/debian"
+    config.vm.box_url = "file:///DataStorage/arkady/Projects/dalee_boxes/build/dalee-debian.json"
+    config.vm.provider :virtualbox do |v|
+        v.memory = 512
+        v.cpus = 1
+    end
+end
