@@ -43,7 +43,7 @@
             ["modifyvm", "{{.Name}}", "--cpus", "1"]
         ],
 
-        "shutdown_command": "echo '{{user `ssh_name`}}'|sudo -S /sbin/halt -h -p"
+        "shutdown_command": "echo '{{user `ssh_pass`}}'|sudo -S /sbin/halt -h -p"
     }],
     
     "post-processors": [{
