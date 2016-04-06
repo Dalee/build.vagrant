@@ -2,7 +2,7 @@
 
 ## Готовые образы
 
-Готовые образы и минимальные метаописания доступны по адресу: http://vagrant.git.dalee.ru/
+Готовые образы и минимальные метаописания доступны по адресу: http://vagrant.ci.dev.dalee.ru/
 
 ## Vagrant
 
@@ -12,23 +12,21 @@
 
 Сборка осуществляется в автоматическом режиме:
 
- * CentOS 7.2
- * Debian 8.2
+ * CentOS 7.2.1511
+ * Debian 8.2.0
+ * Ubuntu 14.04.04
 
 ```bash
-packer build ./centos72-vagrant.json
-packer build ./debian82-vagrant.json
+packer build ./centos72.json
+packer build ./debian82.json
+packer build ./ubuntu14.json
 ```
 
 ### metadata.json
 
 Для автоматического обновления базовых образов необходимо создать файл метаданных.
+Примеры метаданных в директории `example/example-metadata.json`
 
-TODO:
- * metadata.json, https://www.scriptscribe.org/infrastructure/versioned-vagrant-boxes-privately/
- * serverspec для тестирования образов
- * система сборки для автоматизации (grunt, gradle, maven, buildbot?)
+### загрузка образа
 
-## Docker
-
-TBD.
+dev6.dnet:/home/web/git/vagrant.git.dalee.ru/
