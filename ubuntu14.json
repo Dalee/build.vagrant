@@ -58,7 +58,7 @@
     }],
     
     "post-processors": [{
-        "output": "build/dalee-ubuntu14.box",
+        "output": "build/dalee-ubuntu.box",
         "type": "vagrant",
         "compression_level": 7
     }],

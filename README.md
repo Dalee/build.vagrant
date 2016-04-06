@@ -27,6 +27,10 @@ packer build ./ubuntu14.json
 Для автоматического обновления базовых образов необходимо создать файл метаданных.
 Примеры метаданных в директории `example/example-metadata.json`
 
+```bash
+openssl sha1 ./build/dalee-ubuntu.box
+```
+
 ### загрузка образа
 
 dev6.dnet:/home/web/git/vagrant.git.dalee.ru/
