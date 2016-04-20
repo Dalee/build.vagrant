@@ -40,7 +40,9 @@
 
         "vboxmanage": [
             ["modifyvm", "{{.Name}}", "--memory", "512"],
-            ["modifyvm", "{{.Name}}", "--cpus", "1"]
+            ["modifyvm", "{{.Name}}", "--cpus", "1"],
+            ["modifyvm", "{{.Name}}", "--audio", "none"],
+            ["modifyvm", "{{.Name}}", "--nictype1", "Am79C973"]
         ],
 
         "shutdown_command": "echo '{{user `ssh_pass`}}'|sudo -S /sbin/halt -h -p"
