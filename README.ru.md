@@ -1,4 +1,4 @@
-# Base images building
+# Сборка базовых образов
 
 ## Vagrant
 
@@ -6,7 +6,7 @@
  * Vagrant >= 1.7.4, https://www.vagrantup.com/
  * Packer >= 0.8.6, https://www.packer.io/
 
-Use `packer` to build images automatically:
+Сборка осуществляется в автоматическом режиме:
 
  * CentOS 7.2.1511
  * Debian 8.2.0
@@ -20,8 +20,8 @@ packer build ./ubuntu14.json
 
 ### metadata.json
 
-Metadata file is required for base images to be updated automatically.
-Check out `example/example-metadata.json` for examples.
+Для автоматического обновления базовых образов необходимо создать файл метаданных.
+Примеры метаданных в директории `example/example-metadata.json`
 
 ```bash
 openssl sha1 ./build/dalee-ubuntu.box
