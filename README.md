@@ -1,9 +1,5 @@
 # Сборка базовых образов
 
-## Готовые образы
-
-Готовые образы и минимальные метаописания доступны по адресу: http://vagrant.ci.dev.dalee.ru/
-
 ## Vagrant
 
  * VirtualBox >= 5.0.12, https://www.virtualbox.org/
@@ -30,7 +26,3 @@ packer build ./ubuntu14.json
 ```bash
 openssl sha1 ./build/dalee-ubuntu.box
 ```
-
-### загрузка образа
-
-dev6.dnet:/home/web/git/vagrant.git.dalee.ru/
