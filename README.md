@@ -21,6 +21,7 @@ packer build ./ubuntu14.json
 ### metadata.json
 
 Metadata file is required for base images to be updated automatically.
+
 Check out `example/example-metadata.json` for examples.
 
 ```bash
