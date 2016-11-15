@@ -10,7 +10,7 @@
         "headless": false,
 
         "guest_os_type": "Ubuntu_64",
-        "disk_size": 20520,
+        "disk_size": 10520,
         "hard_drive_interface": "sata",
 
         "iso_url": "http://mirror.yandex.ru/ubuntu-releases/14.04/ubuntu-14.04.5-server-amd64.iso",
