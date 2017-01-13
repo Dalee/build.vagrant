@@ -12,11 +12,13 @@ https://atlas.hashicorp.com/Dalee/
 
 Use `packer` to build images:
 
- * Ubuntu 14.04.05
+ * Ubuntu 14.04.05 LTS (deprecated)
+ * Ubuntu 16.04.1 LTS
  * Alpine Linux 3.4.6
 
 ```bash
 packer build ./ubuntu14.json
+packer build ./ubuntu16.json
 packer build ./alpine346.json
 ```
 
