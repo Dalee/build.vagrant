@@ -28,7 +28,7 @@ echo "======================================================"
 rm /root/.profile && \
 apt-get -qq -y update && \
 apt-get remove -y --purge \
-    binutils cpp dpkg-dev \
+    build-essential binutils cpp dpkg-dev \
     update-manager-core \
     ubuntu-release-upgrader-core \
     friendly-recovery \
@@ -39,9 +39,15 @@ apt-get remove -y --purge \
     plymouth \
     parted \
     ntfs-3g \
+    busybox-static \
     installation-report \
     command-not-found \
+    command-not-found-data \
+    unattended-upgrades \
+    geoip-database \
     language-pack-gnome-en \
+    libx11-6 \
+    ufw \
     apparmor && \
 apt-get autoremove -y --purge && \
 
