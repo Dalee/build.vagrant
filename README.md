@@ -4,7 +4,7 @@
 heavily used internally for all our development processes.
 
 Also, you can check our cool [Ansible roles](https://galaxy.ansible.com/Dalee/). 
-They allow you build PHP/PostgreSQL or Node.js ready-to-use environment on top 
+They allow you to build PHP/PostgreSQL or Node.js ready-to-use environment on top 
 of Ubuntu box (there are more roles, actually).
 
 ## Artifacts
@@ -54,7 +54,7 @@ Alpine box has built-in VirtualBox Guest Additions, but,
 Vagrant itself lacks of support Alpine configuration (like ethernet configuration).
 
 There is a [Alpine plugin](https://github.com/maier/vagrant-alpine) for Vagrant,
-but there some NFS mounts problems with undefined root cause.
+but there are some NFS mounts problems with undefined root cause.
 
 ## License
 
