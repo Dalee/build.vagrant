@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -eo pipefail
 
 VERSION=$(cat /root/.vbox_version)
@@ -31,6 +30,8 @@ tar jxfv /root/install/vbox-add/VBoxGuestAdditions-amd64.tar.bz2 -C /root/instal
 cd /root/install/vbox-add-src/src/vboxguest-${VERSION}
 make
 cp ./*.ko /lib/modules/`uname -r`
+depmod -a
+
 echo "vboxguest" >> /etc/modules
 echo "vboxsf" >> /etc/modules
 
