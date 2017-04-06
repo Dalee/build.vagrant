@@ -1,0 +1,10 @@
+#
+# TODO: describe rules
+#
+
+- include: 01-localization.yml
+- include: 02-software.yml
+- include: 03-filesystem.yml
+- include: 04-network.yml
+- include: 05-smtp.yml
+- include: 99-optimize.yml

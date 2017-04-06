@@ -1,9 +1,11 @@
 #
-# Software tuning
+# Software tuning:
+#
 #  - remove unused software
 #  - install vim-tiny
 #  - set vim-tiny as vim via symlink
 #
+
 - name: remove unused system software
   apt:
     name: "{{ item }}"

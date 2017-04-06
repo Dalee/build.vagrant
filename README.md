@@ -1,15 +1,27 @@
-# Dalee base images
+# General purpose Web-development Vagrant box
 
-[Ubuntu box](https://atlas.hashicorp.com/Dalee/boxes/ubuntu) 
-heavily used internally for all our development processes.
+This [Ubuntu 16.04](https://atlas.hashicorp.com/Dalee/boxes/ubuntu) 
+box, which is heavily used internally.
 
-Also, you can check our cool [Ansible roles](https://galaxy.ansible.com/Dalee/). 
-They allow you to build PHP/PostgreSQL or Node.js ready-to-use environment on top 
-of Ubuntu box (there are more roles, actually).
+> Also, you can check out our [Ansible roles](https://galaxy.ansible.com/Dalee/). 
+They allow quickly build PHP or Node.js based ready-to-use environment 
+on top of this box.
 
-## Artifacts
+What included:
+ * VirtualBox Guest Additions (of course)
+ * [mailhog](https://github.com/mailhog/MailHog) (web-interface on :8025)
+ * [nullmail](https://github.com/bruceg/nullmailer) (system-wide MTA)
+ * `en_US.UTF-8` and `ru_RU.UTF-8` locales (default: `en_US.UTF-8`)
+ * Pre-installed software: `ansible`, `mc`, `git`, etc..
+ * Filesystem optimization: `noatime`, `nodiratime`
+ * Easy add new interfaces: `source /etc/network/interfaces.d/*` already 
+    included in `/etc/network/interfaces`
+ * Grub optimizations: `quiet`, `fastboot`
 
-https://atlas.hashicorp.com/Dalee/
+Removed software:
+ * `cron` — it's a dangerous idea have working cron in development vm
+ * `syslog` — just use `journalctl`
+
 
 ## DIY
 
@@ -22,16 +34,10 @@ In case you want to build boxes yourself.
  * Packer >= 0.11.0, https://www.packer.io/
 
 ### How to build
-Use `packer` to build images:
-
- * Ubuntu 16.04.1 LTS
- * Alpine Linux 3.4.6 (*experimental*)
- * Ubuntu 14.04.05 LTS (*deprecated*, Ansible role support dropped)
+Use `packer` to build image:
 
 ```bash
-packer build ./ubuntu14.json
 packer build ./ubuntu16.json
-packer build ./alpine346.json
 ```
 
 Start any build process and take a rest, depending on your system,
@@ -39,7 +45,7 @@ build will finish in ~20-30 minutes.
 
 ### Self-hosted boxes
 
-Do not want to upload boxes to Atlas? Here is the solution:
+Do not want to upload box to Atlas? Here is the solution:
 
 Check out `example/example-metadata.json` and `example/example-vagrantfile` for self-hosted boxes.
 
@@ -47,14 +53,6 @@ To calculate correct sha1 signature for a box, use:
 ```bash
 openssl sha1 ./build/*.box
 ```
-
-## Notes about Alpine Box
-
-Alpine box has built-in VirtualBox Guest Additions, but, 
-Vagrant itself lacks of support Alpine configuration (like ethernet configuration).
-
-There is a [Alpine plugin](https://github.com/maier/vagrant-alpine) for Vagrant,
-but there are some NFS mounts problems with undefined root cause.
 
 ## License
 

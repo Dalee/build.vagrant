@@ -1,9 +1,0 @@
-#
-# Local interface for dnsmasq
-# TODO: describe why we need this
-#
-
-auto {{ dnsmasq.interface }}
-iface {{ dnsmasq.interface }} inet static
-	address {{ dnsmasq.address }}
-	netmask {{ dnsmasq.netmask }}

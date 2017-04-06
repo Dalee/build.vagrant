@@ -6,6 +6,7 @@
 #  - update /etc/default/grub
 #  - run update-grub
 #
+
 - name: update /etc/fstab
   template:
     src: "system.fstab.j2"

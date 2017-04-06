@@ -1,37 +1,19 @@
 - hosts: localhost
   connection: local
   vars:
-    #
-    # base settings
+    # base
     - vagrant:
         user: vagrant
         pass: vagrant
         group: vagrant
         key: "https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub"
 
-    #
-    # mail
+    # smtp emulation
     - smtp:
         mailhog_release: "https://github.com/mailhog/MailHog/releases/download/v0.2.1/MailHog_linux_amd64"
         mailhog_bin: "/usr/local/sbin/mailhog"
-
-    # dnsmasq daemon
-    - dnsmasq:
-        enabled: yes
-        interface: "lo:1"
-        address: "172.18.0.1"
-        netmask: "255.255.255.0"
-        config_dir: "/etc/dnsmasq.d"
-
-    #
-    # docker daemon
-    - docker:
-        enabled: no
-        interface: "enp1s3"
-        address: "172.17.0.1"
-        netmask: "255.255.0.0"
+        mailhog_cache: "/var/cache/mailhog"
 
   roles:
     - 01-vagrant
-    - 02-virtualbox
-    - 03-build
+    - 02-build-basesystem

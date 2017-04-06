@@ -1,9 +1,9 @@
 #
+# TODO: describe rules
 #
-#
-#
+
 - name: generate mandatory locales
-  command: locale-gen --purge en_US.UTF-8 ru_RU.UTF-8
+  command: "locale-gen --purge en_US.UTF-8 ru_RU.UTF-8"
 
 - name: set default locale settings
   template:
