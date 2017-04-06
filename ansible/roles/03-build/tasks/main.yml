@@ -1,0 +1,7 @@
+- include: system-localization.yml
+- include: system-software.yml
+- include: system-filesystem.yml
+- include: system-network.yml
+- include: system-dnsmasq.yml
+- include: system-smtp.yml
+- include: system-docker.yml

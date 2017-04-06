@@ -1,0 +1,40 @@
+#
+# TODO: describe rules
+#
+
+- name: install bridge-utils
+  apt:
+    name: "bridge-utils"
+    state: "present"
+
+- name: create additional interfaces directory
+  file:
+    path: "/etc/network/interfaces.d"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: 0755
+
+- name: update /etc/network/interfaces
+  template:
+    src: "system.interfaces.j2"
+    dest: "/etc/network/interfaces"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: create additional network interfaces
+  template:
+    src: "interface.{{ item }}.j2"
+    dest: "/etc/network/interfaces.d/{{ item }}.conf"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  with_items:
+    - "eth_0_1"
+    - "eth_0_2"
+
+- name: apply network changes
+  service:
+    name: "networking"
+    state: "restarted"

@@ -48,8 +48,14 @@ apt-get remove -y --purge \
     language-pack-gnome-en \
     libx11-6 \
     ufw \
-    apparmor && \
-apt-get autoremove -y --purge && \
+    apparmor \
+    ftp \
+    powermgmt-base \
+    vim vim-runtime \
+    wireless-regdb \
+    accountsservice
+
+apt-get autoremove -y --purge
 
 echo "======================================================"
 echo "======================================================"

@@ -1,0 +1,33 @@
+#
+#
+#
+
+- name: create user .hushlogin file
+  file:
+    path: "/home/{{ vagrant.user }}/.hushlogin"
+    state: "touch"
+    owner: "{{ vagrant.user }}"
+    group: "{{ vagrant.group }}"
+    mode: 0644
+
+- name: create user .ssh directory
+  file:
+    path: "/home/{{ vagrant.user }}/.ssh"
+    state: "directory"
+    owner: "{{ vagrant.user }}"
+    group: "{{ vagrant.group }}"
+    mode: 0700
+
+- name: remove user .profile file
+  file:
+    path: "/home/{{ vagrant.user }}/.profile"
+    state: "absent"
+
+- name: install vagrant insecure key for user
+  get_url:
+    url: "{{ vagrant.key }}"
+    dest: "/home/{{ vagrant.user }}/.ssh/authorized_keys"
+    validate_certs: no
+    owner: "{{ vagrant.user }}"
+    group: "{{ vagrant.group }}"
+    mode: 0600

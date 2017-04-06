@@ -24,9 +24,9 @@ In case you want to build boxes yourself.
 ### How to build
 Use `packer` to build images:
 
- * Ubuntu 14.04.05 LTS (deprecated, Ansible role support dropped)
  * Ubuntu 16.04.1 LTS
- * Alpine Linux 3.4.6
+ * Alpine Linux 3.4.6 (*experimental*)
+ * Ubuntu 14.04.05 LTS (*deprecated*, Ansible role support dropped)
 
 ```bash
 packer build ./ubuntu14.json

@@ -1,0 +1,13 @@
+#
+#
+#
+
+- name: download mailhog release
+  get_url:
+    url: "{{ smtp.mailhog_release }}"
+    dest: "{{ smtp.mailhog_bin }}"
+    owner: "root"
+    group: "root"
+    mode: 0755
+
+# TODO: set maildir-path, set storage, create maildir
