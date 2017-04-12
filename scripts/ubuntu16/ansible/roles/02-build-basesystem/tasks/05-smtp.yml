@@ -1,0 +1,64 @@
+#
+# TODO: describe rules
+#
+
+- name: check mailhog installed
+  stat:
+    path: "{{ smtp.mailhog_bin }}"
+  register: smtp_mailhog_bin
+
+- name: download mailhog release
+  get_url:
+    url: "{{ smtp.mailhog_release }}"
+    dest: "{{ smtp.mailhog_bin }}"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  when: not smtp_mailhog_bin.stat.exists
+
+- name: create mailhog directory
+  file:
+      path: "/var/cache/mailhog"
+      state: "directory"
+      owner: "root"
+      group: "root"
+      mode: 0755
+
+- name: install mailhog systemd service
+  template:
+    src: "systemd.mailhog.service.j2"
+    dest: "/lib/systemd/system/mailhog.service"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: install nullmailer
+  apt:
+    name: "nullmailer"
+    install_recommends: no
+    state: "present"
+
+- name: update nullmailer configuration
+  template:
+    src: "system.nullmailer.remotes.j2"
+    dest: "/etc/nullmailer/remotes"
+    owner: "mail"
+    group: "mail"
+    mode: 0600
+
+- name: restart mailhog and nullmailer services
+  systemd:
+    name: "{{ item }}"
+    daemon_reload: yes
+    state: "restarted"
+  with_items:
+    - "mailhog"
+    - "nullmailer"
+
+- name: set state of mailhog and nullmailer services
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+  with_items:
+    - "mailhog"
+    - "nullmailer"

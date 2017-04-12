@@ -1,0 +1,27 @@
+#
+#
+#
+
+- name: disable cron-like services
+  systemd:
+    name: "{{ item }}"
+    state: "stopped"
+    enabled: no
+    masked: yes
+  with_items:
+    - "cron.service"
+    - "rsyslog.service"
+    - "syslog.socket"
+    - "apt-daily.service"
+    - "apt-daily.timer"
+    - "systemd-fsck-root.service"
+
+- name: cleanup
+  file:
+    path: "{{ item }}"
+    state: "absent"
+  with_items:
+    - "/var/log/syslog"
+    - "/var/log/vboxadd-install.log"
+    - "/var/log/vboxadd-install-x11.log"
+    - "/var/log/VBoxGuestAdditions.log"

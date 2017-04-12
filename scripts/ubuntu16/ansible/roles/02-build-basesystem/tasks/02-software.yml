@@ -1,0 +1,69 @@
+#
+# Software tuning:
+#
+#  - remove unused software
+#  - install vim-tiny
+#  - set vim-tiny as vim via symlink
+#
+
+- name: remove unused system software
+  apt:
+    name: "{{ item }}"
+    force: yes
+    purge: yes
+    autoremove: yes
+    state: "absent"
+  with_items:
+    - "build-essential"
+    - "binutils"
+    - "cpp"
+    - "libc-dev"
+    - "dpkg-dev"
+    - "update-manager-core"
+    - "ubuntu-release-upgrader-core"
+    - "friendly-recovery"
+    - "laptop-detect"
+    - "popularity-contest"
+    - "pciutils"
+    - "usbutils"
+    - "plymouth"
+    - "parted"
+    - "ntfs-3g"
+    - "busybox-static"
+    - "installation-report"
+    - "command-not-found"
+    - "command-not-found-data"
+    - "unattended-upgrades"
+    - "geoip-database"
+    - "language-pack-gnome-en"
+    - "libx11-6"
+    - "ufw"
+    - "apparmor"
+    - "ftp"
+    - "powermgmt-base"
+    - "vim"
+    - "vim-runtime"
+    - "wireless-regdb"
+    - "accountsservice"
+
+- name: install mandatory system software
+  apt:
+    name: "{{ item }}"
+    install_recommends: no
+    state: "present"
+  with_items:
+    - "mc"
+    - "nano"
+    - "htop"
+    - "strace"
+    - "make"
+    - "git"
+    - "vim-tiny"
+    - "openssh-server"
+
+- name: install vim-tiny as default vim
+  file:
+    src: "/usr/bin/vi"
+    dest: "/usr/bin/vim"
+    state: "link"
+    force: yes

@@ -1,77 +1,93 @@
 {
-    "variables": {
-        "ssh_name": "vagrant",
-        "ssh_pass": "vagrant"
-    },
-    "builders": [{
-        "name": "ubuntu16",
-        "type": "virtualbox-iso",
-        "virtualbox_version_file": ".vbox_version",
-        "headless": false,
-
-        "guest_os_type": "Ubuntu_64",
-        "disk_size": 10520,
-        "hard_drive_interface": "sata",
-
-        "iso_url": "http://mirror.yandex.ru/ubuntu-releases/16.04.1/ubuntu-16.04.1-server-amd64.iso",
-        "iso_checksum": "29a8b9009509b39d542ecb229787cdf48f05e739a932289de9e9858d7c487c80",
-        "iso_checksum_type": "sha256",
-
-        "boot_wait": "12s",
-        "boot_command": [
-            "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-            "/install/vmlinuz",
-            " auto",
-            " console-setup/ask_detect=false",
-            " console-setup/layoutcode=us",
-            " console-setup/modelcode=pc105",
-            " debconf/frontend=noninteractive",
-            " debian-installer=en_US",
-            " fb=false",
-            " initrd=/install/initrd.gz",
-            " kbd-chooser/method=us",
-            " keyboard-configuration/layout=USA",
-            " keyboard-configuration/variant=USA",
-            " locale=en_US",
-            " netcfg/get_hostname=vagrant",
-            " netcfg/get_domain=vm",
-            " noapic",
-            " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu16/kickstart.cfg",
-            " --",
-            "<enter><wait>"
+  "variables": {
+    "ssh_name": "vagrant",
+    "ssh_pass": "vagrant"
+  },
+  "builders": [
+    {
+      "name": "ubuntu16",
+      "type": "virtualbox-iso",
+      "virtualbox_version_file": ".vbox_version",
+      "headless": false,
+      "guest_os_type": "Ubuntu_64",
+      "disk_size": 10520,
+      "hard_drive_interface": "sata",
+      "iso_url": "http://mirror.yandex.ru/ubuntu-releases/16.04.2/ubuntu-16.04.2-server-amd64.iso",
+      "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
+      "iso_checksum_type": "sha256",
+      "boot_wait": "12s",
+      "boot_command": [
+        "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz",
+        " auto",
+        " console-setup/ask_detect=false",
+        " console-setup/layoutcode=us",
+        " console-setup/modelcode=pc105",
+        " debconf/frontend=noninteractive",
+        " debian-installer=en_US",
+        " fb=false",
+        " initrd=/install/initrd.gz",
+        " kbd-chooser/method=us",
+        " keyboard-configuration/layout=USA",
+        " keyboard-configuration/variant=USA",
+        " locale=en_US",
+        " netcfg/get_hostname=vagrant",
+        " netcfg/get_domain=vm",
+        " noapic",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu16/kickstart.cfg",
+        " --",
+        "<enter><wait>"
+      ],
+      "http_directory": "http",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "ssh_username": "{{user `ssh_name`}}",
+      "ssh_password": "{{user `ssh_pass`}}",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "512"
         ],
-        "http_directory": "http",
-        "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-
-        "ssh_username": "{{user `ssh_name`}}",
-        "ssh_password": "{{user `ssh_pass`}}",
-        "ssh_port": 22,
-        "ssh_wait_timeout": "10000s",
-
-        "vboxmanage": [
-            ["modifyvm", "{{.Name}}", "--memory", "512"],
-            ["modifyvm", "{{.Name}}", "--cpus", "1"]
-        ],
-
-        "shutdown_command": "echo '{{user `ssh_pass`}}' | sudo -S /sbin/halt -h -p"
-    }],
-    
-    "post-processors": [{
-        "output": "build/dalee-ubuntu.box",
-        "type": "vagrant",
-        "compression_level": 7
-    }],
-
-    "provisioners": [{
-        "type": "shell",
-        "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-        "scripts": [
-            "scripts/ubuntu16/vagrant.sh",
-            "scripts/ubuntu16/vboxguest.sh",
-            "scripts/ubuntu16/compact.sh"
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
         ]
-    }]
+      ],
+      "shutdown_command": "echo '{{user `ssh_pass`}}' | sudo -S /sbin/halt -h -p"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/ubuntu16/bootstrap.sh"
+    },
+    {
+      "type": "ansible-local",
+      "command": "sudo -E ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook",
+      "playbook_file": "scripts/ubuntu16/ansible/vagrant.yml",
+      "inventory_file": "scripts/ubuntu16/ansible/inventory.ini",
+      "playbook_dir": "scripts/ubuntu16/ansible"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/ubuntu16/compact.sh"
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "build/dalee-ubuntu.box",
+      "type": "vagrant",
+      "compression_level": 7
+    }
+  ]
 }

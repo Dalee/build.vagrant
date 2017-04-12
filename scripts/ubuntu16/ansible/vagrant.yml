@@ -1,0 +1,19 @@
+- hosts: localhost
+  connection: local
+  vars:
+    # base
+    - vagrant:
+        user: vagrant
+        pass: vagrant
+        group: vagrant
+        key: "https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub"
+
+    # smtp emulation
+    - smtp:
+        mailhog_release: "https://github.com/mailhog/MailHog/releases/download/v0.2.1/MailHog_linux_amd64"
+        mailhog_bin: "/usr/local/sbin/mailhog"
+        mailhog_cache: "/var/cache/mailhog"
+
+  roles:
+    - 01-vagrant
+    - 02-build-basesystem

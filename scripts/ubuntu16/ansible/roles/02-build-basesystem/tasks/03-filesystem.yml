@@ -1,0 +1,35 @@
+#
+# Disable fstab UUID and tune filesystem:
+#
+#  - update /etc/fstab
+#  - update /etc/initramfs-tools/conf.d/resume
+#  - update /etc/default/grub
+#  - run update-grub
+#
+
+- name: update /etc/fstab
+  template:
+    src: "system.fstab.j2"
+    dest: "/etc/fstab"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: update /etc/initramfs-tools/conf.d/resume
+  template:
+    src: "system.resume.j2"
+    dest: "/etc/initramfs-tools/conf.d/resume"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: update /etc/default/grub
+  template:
+    src: "system.grub.j2"
+    dest: "/etc/default/grub"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: update /boot/grub/grub.cfg
+  command: update-grub

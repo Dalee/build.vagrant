@@ -5,9 +5,9 @@
         "version": "201525120051",
         "providers": [{
                 "name": "virtualbox",
-                "url": "file:///Users/arkady/Projects/dalee/build.vagrant/build/dalee-ubuntu.box",
+                "url": "file:///path/to/git/repo//build/dalee-ubuntu.box",
                 "checksum_type": "sha1",
-                "checksum": "6e18f2396339c2d07632f27f16061d4bdc4224b8"
+                "checksum": "<insert sha1 here>"
         }]
     }]
 }

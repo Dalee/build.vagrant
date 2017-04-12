@@ -1,0 +1,24 @@
+#
+# TODO: describe rules
+#
+
+- name: create additional interfaces directory
+  file:
+    path: "/etc/network/interfaces.d"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: 0755
+
+- name: update /etc/network/interfaces
+  template:
+    src: "system.interfaces.j2"
+    dest: "/etc/network/interfaces"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: apply network changes
+  systemd:
+    name: "networking"
+    state: "restarted"
