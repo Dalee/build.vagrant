@@ -29,8 +29,8 @@ In case you want to build boxes yourself.
 
 ### Requirements
 
- * VirtualBox >= 5.0.26, https://www.virtualbox.org/
- * Vagrant >= 1.8.4, https://www.vagrantup.com/
+ * VirtualBox >= 5.1.22, https://www.virtualbox.org/
+ * Vagrant >= 1.9.4, https://www.vagrantup.com/
  * Packer >= 0.11.0, https://www.packer.io/
 
 ### How to build
