@@ -7,4 +7,5 @@
 - include: 03-filesystem.yml
 - include: 04-network.yml
 - include: 05-smtp.yml
+- include: 06-udpwl.yml
 - include: 99-optimize.yml
