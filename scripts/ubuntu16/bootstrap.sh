@@ -16,7 +16,7 @@ apt-get install -y --no-install-recommends \
 
 mkdir -p /tmp/virtualbox
 mount -o loop /home/vagrant/VBoxGuestAdditions_$(cat /home/vagrant/.vbox_version).iso /tmp/virtualbox
-sh /tmp/virtualbox/VBoxLinuxAdditions.run
+sh /tmp/virtualbox/VBoxLinuxAdditions.run || true
 umount /tmp/virtualbox
 rmdir /tmp/virtualbox
 rm /home/vagrant/*.iso
