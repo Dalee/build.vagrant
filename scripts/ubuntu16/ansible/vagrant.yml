@@ -16,7 +16,7 @@
 
     # udp web logger
     - udpwl:
-        release: "https://github.com/ns3777k/udp-web-logger/releases/download/v1.0.0/udp-web-logger-v1.0.0-linux-amd64"
+        release: "https://github.com/Dalee/udp-web-logger/releases/download/v1.0.1/udp-web-logger-v1.0.1-linux-amd64"
         bin: "/usr/local/sbin/udpwl"
 
   roles:
