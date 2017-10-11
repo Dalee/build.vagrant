@@ -1,0 +1,36 @@
+- name: check udpwl installed
+  stat:
+    path: "{{ udpwl.bin }}"
+  register: udpwl_bin
+
+- name: download udpwl release
+  get_url:
+    url: "{{ udpwl.release }}"
+    dest: "{{ udpwl.bin }}"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  when: not udpwl_bin.stat.exists
+
+- name: install udpwl systemd service
+  template:
+    src: "systemd.udpwl.service.j2"
+    dest: "/lib/systemd/system/udpwl.service"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: restart udpwl service
+  systemd:
+    name: "{{ item }}"
+    daemon_reload: yes
+    state: "restarted"
+  with_items:
+    - "udpwl"
+
+- name: set state of udpwl service
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+  with_items:
+    - "udpwl"
