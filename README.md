@@ -11,7 +11,7 @@ What included:
  * VirtualBox Guest Additions (of course)
  * [mailhog](https://github.com/mailhog/MailHog) (web-interface on :8025)
  * [nullmail](https://github.com/bruceg/nullmailer) (system-wide MTA)
- * [udp-web-logger](https://github.com/Dalee/udp-web-logger)
+ * [udp-web-logger](https://github.com/Dalee/udp-web-logger) (web-ui on :9000, udp on :9010)
  * `en_US.UTF-8` and `ru_RU.UTF-8` locales (default: `en_US.UTF-8`)
  * Pre-installed software: `ansible`, `mc`, `git`, etc..
  * Filesystem optimization: `noatime`, `nodiratime`
